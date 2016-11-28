@@ -1,0 +1,50 @@
+{% extends "base/base.html" %}
+
+{% block avi_title %}
+GAVIP Example AVIs: Simple AVI (Result {{job_id}})
+{% endblock avi_title %}
+
+{% block avi_content %}
+{% load staticfiles %}
+<link href="{% static 'avi/css/avi.css' %}" rel="stylesheet" type="text/css">
+
+<div class="container-fluid">
+ <div class="col-sm-8 col-md-9 col-lg-10">
+   <div class="container-fluid">
+       
+     <div class="row navoffset">
+       <div class="col-xs-12">
+         <div class="panel panel-info">
+          <div class="panel-heading">
+            Result view help
+          </div>
+          <div class="panel-body">
+              <p>This is a panel which renders one of the job results.</p>
+
+              <p>Toggle the variable details to see more information about the results.</p>
+
+              <ul>
+                <li> The data is rendered using Pandas and Pandas-profiling.</li>
+                <li> The pipeline creates a large JSON object using several columns from the resulting VOTable from the query.</li>
+                <li> Pandas is used to create the HTML that presents the data. This is stored in the output of the job.</li>
+                <li> When a result is accessed, the HTML for a particular job is passed in as context to the rest of the results template. </li>
+
+          </div>
+        </div>
+       </div>
+     </div>
+     <div class="row navoffset">
+       <div class="col-xs-12">
+         {{ gacs_dfdescription|safe }}
+       </div>
+     </div>
+     <div class="row navoffset">
+        <div class="col-xs-12">
+         {{ pandas_profiling|safe }}
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+
+{% endblock avi_content %}
