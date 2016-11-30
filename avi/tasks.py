@@ -1,11 +1,11 @@
+from astropy.table import Table
+
 import os
 import json
-from django.conf import settings
-
 import numpy as np
-import pandas as pd
+
 import pandas_profiling
-from astropy.table import Table
+import pandas as pd
 
 # Class used for creating pipeline tasks
 from pipeline.classes import AviTask, AviParameter, AviLocalTarget
@@ -64,7 +64,6 @@ class ProcessData(AviTask):
         """
         Analyses the VOTable file containing the GACS-dev query results
         """
-        logger.info('Input VOTable file: %s' % self.input().path)
         t = Table.read(self.input().path, format='votable')
         df = pd.DataFrame(np.ma.filled(t.as_array()), columns=t.colnames)
 

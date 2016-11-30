@@ -17,7 +17,5 @@ class SimpleJob(AviJob):
     DISTANCE(POINT('ICRS',ra,dec), POINT('ICRS',266.41683,-29.00781)) 
     AS dist FROM gaiadr1.gaia_source WHERE 
     1=CONTAINS(POINT('ICRS',ra,dec), CIRCLE('ICRS',266.41683,-29.00781, 0.08333333))""")
+    
     pipeline_task = "ProcessData"
-
-    def get_absolute_url(self):
-        return "%i/" % self.pk
